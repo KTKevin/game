@@ -4,8 +4,6 @@ import constants
 import platforms
 
 class Level():
-    A = 500
-    B = 400
     """ This is a generic super-class used to define a level.
         Create a child class for each level with level-specific
         info. """
@@ -31,26 +29,26 @@ class Level():
 
     # Update everythign on this level
     def update(self):
-        
+        """ Update everything in this level."""
         self.platform_list.update()
         self.enemy_list.update()
 
     def draw(self, screen):
-        
+        """ Draw everything on this level. """
 
         # Draw the background
         # We don't shift the background as much as the sprites are shifted
         # to give a feeling of depth.
         screen.fill(constants.BLACK)
-        screen.blit(self.background, (self.world_shift // 1,1))
-
+        screen.blit(self.background, (self.world_shift // 3, 0))
 
         # Draw all the sprite lists that we have
         self.platform_list.draw(screen)
         self.enemy_list.draw(screen)
 
     def shift_world(self, shift_x):
-        
+        """ When the user moves left/right and we need to scroll everything: """
+
         # Keep track of the shift amount
         self.world_shift += shift_x
 
@@ -63,7 +61,11 @@ class Level():
 
 # Create platforms for the level
 class Level_01(Level):
-    def __init__(self,player):
+    """ Definition for level 1. """
+
+    def __init__(self, player):
+        """ Create level 1. """
+
         # Call the parent constructor
         Level.__init__(self, player)
         W, H = pygame.display.Info().current_w, pygame.display.Info().current_h 
@@ -77,20 +79,7 @@ class Level_01(Level):
         # Array with type of platform, and x, y location of the platform.
        # desk = pygame.image.load(os.path.join('Images','Desk.png'))
        # level = [[platforms.Desk, 500,500]
-        level = [ [platforms.desk3, 400, 500],
-                  
-                  [platforms.desk,0,500],
-                  [platforms.desk, 0, 400 ],
-                  [ platforms.desk, 0, 300],
-
-                  [ platforms.desk, 0, 200],
-                  [platforms.desk, 3150, 500],
-                  [platforms.desk, 3150, 400],
-                  [platforms.desk, 3150, 300 ]
-                  ]
-        for i in range (0, 70):
-            level.append([platforms.desk,100*i,100])
-            
+        level = [ [platforms.desk, 500, 500] ]
 
 
         # Go through the array above and add platforms
@@ -116,10 +105,10 @@ class Level_01(Level):
 
 # Create platforms for the level
 #class Level_02(Level):
-    
+    """ Definition for level 2. """
 
  #   def __init__(self, player):
-
+        """ Create level 1. """
 
         # Call the parent constructor
   #      Level.__init__(self, player)
